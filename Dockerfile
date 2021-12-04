@@ -1,5 +1,5 @@
-FROM python:3.7.12-alpine3.15
+FROM python:3.9.9-alpine3.15
 COPY . /opt
-RUN pip install -r /opt/requirements.txt
+RUN . /opt/bin/activate && pip install -r /opt/requirements.txt
 WORKDIR /opt
-CMD "python" "api/main.py"
+CMD . /opt/bin/activate && python api/main.py

@@ -24,7 +24,7 @@ class Api:
         w = Wrapper()
         return w.n_create()
     
-    app.run()
+    app.run(host="0.0.0.0")
 
 a = Api()
 a()
