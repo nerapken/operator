@@ -20,3 +20,14 @@ gh repo clone nerapken/operator
 cd operator
 docker-compose up --build -d
 ```
+
+## Api documentation
+   use `/api/v1/init` for POST method with data:
+   
+   ```
+   {
+      'userid': 'username'
+   }
+   ```
+   response will be user token which can be used for authorize kubernetes from API
+
