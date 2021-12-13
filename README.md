@@ -1,5 +1,5 @@
-# Kube Operator
-   berfungsi untuk mengoperasikan kubernetes melalui api, saat ini tersedia rbac management
+# RBAC Operator
+this project created for RBAC operator on kubernetes, when you want add user on kubernetes with permission you can use this.
 
 ## How to start
 1. create docker network
