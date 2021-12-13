@@ -3,6 +3,7 @@ from kube.ns import Namespace as ns
 from kube.rb import RoleBinding as rb
 from kube.sa import ServiceAccount as sva
 from kube.role import Role as ro
+from kube.secret import Secret as sec
 #from kube.pods import Pods as pods
 
 class Wrapper:
@@ -12,31 +13,37 @@ class Wrapper:
         pass
     
     def n_create(self):
-        #data = request.get_json()
         n = ns(self.userid)
         return n.ns_create()
 
     def sa_create(self):
-        #data = request.get_json()
         sa = sva(self.userid)
         return sa.sa_create()
     
+    def sa_get_token_name(self):
+        sa = sva(self.userid)
+        sec_name = sa.get_secret_name()
+        return sec_name['secrets'][0]['name']
+    
     def r_create(self):
-        #data = request.get_json()
         rl = ro(self.userid)
         return rl.ro_create()
 
     def rb_create(self):
-        #data = request.get_json()
         r = rb(self.userid) 
         return r.rb_create()
+    
+    def sec_show(self):
+        se = sec(self.userid, self.sa_get_token_name())
+        out = {'userid': self.userid, 'token': se.sec_show()}
+        return out
 
     def shoot(self):
         self.n_create()
         self.sa_create()
         self.r_create()
         self.rb_create()
-        return "Shooted"
+        return self.sec_show()
 
 class Api:
     def __init__(self):
