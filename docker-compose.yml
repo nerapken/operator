@@ -1,12 +1,19 @@
 version: "3.3"
 services:
   operator_api:
+    environment:
+      - TOKEN=eytttyyyyzzxxxexample
+      - HOSTNAME=https://operator-api.example.com
+      - PORT=6443
+      - CERT=/opt/ca-nerapken-example.pem
     restart: always
     build: .
     ports:
       - 5000:5000
     networks:
-        - default
+      - default
+    volumes:
+      - /home/aji/ca-nerapken.pem:/opt/ca-nerapken-example.pem
 networks:
   default:
     external: true
