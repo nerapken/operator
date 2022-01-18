@@ -1,11 +1,17 @@
 from requests import get, post
-from envi import auth, hostname, port, cert
+#from envi import auth, hostname, port, cert
+from os import environ
+
+auth = {'Authorization': 'Bearer ' + environ['TOKEN']}
+hostname = environ['HOSTNAME']
+port = environ['PORT']
+cert = environ['CERT']
 
 class Namespace:
     
     def __init__(self, userid):
        self.userid = userid
-       self.url = hostname + port
+       self.url = hostname+ ':' + port
        self.ns_path = '/api/v1/namespaces/'
        self.data = {'kind': 'Namespace', 'apiVersion': 'v1', 'metadata': {'name': self.userid}}
 

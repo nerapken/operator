@@ -1,9 +1,15 @@
 from requests import get, post
-from envi import auth, hostname, port, cert
+#from envi import auth, hostname, port, cert
+from os import environ
+
+auth = {'Authorization': 'Bearer ' + environ['TOKEN']}
+hostname = environ['HOSTNAME']
+port = environ['PORT']
+cert = environ['CERT']
 
 class RoleBinding:
     def __init__(self, userid):
-        self.url = hostname + port
+        self.url = hostname+ ':' + port
         self.rb_path = '/apis/rbac.authorization.k8s.io/v1/namespaces/'+ userid + '/rolebindings'
         self.userid = userid
     

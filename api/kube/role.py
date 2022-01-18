@@ -1,11 +1,17 @@
 from requests import get, post
-from envi import auth, hostname, port, cert
+#from envi import auth, hostname, port, cert
+from os import environ
+
+auth = {'Authorization': 'Bearer ' + environ['TOKEN']}
+hostname = environ['HOSTNAME']
+port = environ['PORT']
+cert = environ['CERT']
 
 class Role:
     def __init__(self, userid):
         self.r_path = '/apis/rbac.authorization.k8s.io/v1/namespaces/'+userid+'/roles'
         self.userid = userid
-        self.url = hostname + port
+        self.url = hostname+ ':' + port
     
     def r_show(self):
         r = get(url=self.url+self.r_path, headers=auth, verify=cert)

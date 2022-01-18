@@ -23,7 +23,7 @@ class Wrapper:
     def sa_get_token_name(self):
         sa = sva(self.userid)
         sec_name = sa.get_secret_name()
-        return sec_name['secrets'][0]['name']
+        return sec_name
     
     def r_create(self):
         rl = ro(self.userid)
@@ -56,7 +56,7 @@ class Api:
         data = request.get_json()
         w = Wrapper(data)
         return w.shoot()
-    
+        # return w.n_create()
     app.run(host="0.0.0.0")
 
 a = Api()
