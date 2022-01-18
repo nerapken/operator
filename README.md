@@ -14,10 +14,23 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 ```
 gh repo clone nerapken/operator
 ```
-
-4. build and run docker
+4. Customize docker-compose.yml with your kubernetes cluster
 ```
 cd operator
+
+# use text editor like vim or nano
+vim docker-compose.yml
+
+# need to change to your env
+- environment:
+   - TOKEN=eytttyyyyzzxxxexample
+   - HOSTNAME=https://operator-api.example.com
+   - PORT=6443
+   - CERT=/opt/ca-nerapken-example.pem
+```
+
+5. build and run docker
+```
 docker-compose up --build -d
 ```
 
